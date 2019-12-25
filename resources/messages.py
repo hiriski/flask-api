@@ -4,7 +4,7 @@ from flask_restful import Resource, Api
 
 import models # buatan sendiri
 
-# Buat sebuah class untuk nampilin semua classnya
+# Buat sebuah class untuk nampilin semua data Messagenya/Statusnya
 class MessageList(Resource):
     def get(self):
         messages = {}

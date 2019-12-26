@@ -90,7 +90,11 @@ class User(BaseUser):
             return {'pesan':'User or password is wrong bro!'}
 
         else:
-            return {'pesan':'Singin success!'}
+            access_token = create_access_token(identity=user_username_registered)
+            return {
+                'pesan':'Singin success!',
+                'token':access_token
+                }
 
 
 

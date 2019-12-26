@@ -10,7 +10,9 @@ from hashlib import md5
 import models 
 
 user_fields = {
-    'username'  : fields.String,
+    'username'      : fields.String,
+    # akses token
+    'access_token'  : fields.String
 
     # karena masalah keamanan saya nggak mau nampilin password usernya
     # ketika berhasil register
@@ -56,6 +58,15 @@ class UserList(Resource):
                 # hash password usernya
                 password = md5(new_user_password.encode('utf-8')).hexdigest()
                 )
+
+            # ngirim token berarti butuh sesuatu di user_fields nya
+
+            # Saya butuh mendapatkan akses token. Saya bisa dapetin dari fungsi create_access_token dari JWT
+            # untuk parameternya disini identity dan valuenya apa saja asalkan unik
+            access_token = create_access_token(identity=new_user_username)
+
+            # selipkan akses token
+            user.access_token = access_token
             return marshal(user, user_fields) 
         else:
             return {'pesan':'Sorry, username ini sudah dipake orang!'}

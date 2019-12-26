@@ -10,7 +10,7 @@ blog_fields = {
     'id'        : fields.Integer,
     'title'     : fields.String,
     'content'   : fields.String,
-    'create_at' : fields.String #suatu saat ganti jadi Datetime
+    'publish_at' : fields.String #suatu saat ganti jadi Datetime
 }
 
 # Function get or abort
@@ -53,7 +53,7 @@ class BlogList(Resource):
 
         # ini hampir sama kek di atas
         self.reqparse.add_argument(
-            'create_at',
+            'publish_at',
             required    = True, 
             help        = 'Tanggal harus ada bro',
             location    = ['form', 'json']
@@ -73,7 +73,7 @@ class BlogList(Resource):
         #         'sucess':'Data berhasil di POST',
         #         'judul_blog':foo.title,
         #         'konten_blog':foo.content,
-        #         'tanggal':foo.create_at
+        #         'tanggal':foo.publish_at
         #     })
 
         # Ganti return dsini menggunakan marshal
@@ -90,7 +90,7 @@ class BlogList(Resource):
         # for row in query:
         #     blogs[row.id] = {
         #         'title': row.title,
-        #         'create_at' : row.create_at
+        #         'publish_at' : row.publish_at
         #         }
         
 
@@ -120,7 +120,7 @@ class Blog(Resource):
         # blog_list = models.Blog.get_by_id(id)
         # return jsonify({
         #         'title':blog_list.title,
-        #         'create_at': blog_list.create_at
+        #         'publish_at': blog_list.publish_at
         #     })
 
         # misalnya saya mengakses http:127.0.0.1/api/v1/blog/1 bisa karena memang id 1 ada

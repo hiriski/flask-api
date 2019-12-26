@@ -2,13 +2,11 @@ from flask import Flask, request
 from flask_restful import Resource
 
 # import resources yang udah di bikin
-from resources.messages import messages_api
 from resources.blog import blog_api
 
 import models
 
 app = Flask(__name__)
-app.register_blueprint(messages_api, url_prefix='/api/v1')
 app.register_blueprint(blog_api, url_prefix='/api/v1')
 
 # api  = Api(app)

@@ -1,6 +1,9 @@
 from flask import jsonify, Blueprint, abort
 from flask_restful import  Resource, Api, reqparse, fields, marshal, marshal_with
 
+# import JWT
+from flask_jwt_extended import (JWTManager, jwt_required, create_access_token, get_jwt_identity)
+
 # import hash password
 from hashlib import md5
 

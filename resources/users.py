@@ -19,7 +19,7 @@ user_fields = {
     #'password'  : fields.String
 }
 
-class UserList(Resource):
+class BaseUser(Resource):
     # Fungsi ini akan otomatis terpanggil ketika BlogListnya dijalankan
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
@@ -39,7 +39,7 @@ class UserList(Resource):
         )
         super().__init__() # pastiin dia manggil fungsi __init__ dari parentnya juga
 
-
+class UserList(BaseUser):
     # method post untuk nge-post data
     def post(self):
         kwargs = self.reqparse.parse_args()
@@ -72,27 +72,7 @@ class UserList(Resource):
             return {'pesan':'Sorry, username ini sudah dipake orang!'}
 
 
-class User(Resource):
-    # Fungsi ini akan otomatis terpanggil ketika BlogListnya dijalankan
-    def __init__(self):
-        self.reqparse = reqparse.RequestParser()
-
-        # untuk aturannya sendiri dan apa data yang mau kita terima kita simpan di .add_argument()
-        self.reqparse.add_argument(
-            'username',
-            required    = True,
-            help        = 'Username wajib ada', 
-            location    = ['form', 'json']
-        )
-        self.reqparse.add_argument(
-            'password',
-            required    = True,
-            help        = 'Password wajib ada', 
-            location    = ['form', 'json']
-        )
-        super().__init__() # pastiin dia manggil fungsi __init__ dari parentnya juga
-
-
+class User(BaseUser):
     def post(self):
         kwargs = self.reqparse.parse_args()
         # insert data user

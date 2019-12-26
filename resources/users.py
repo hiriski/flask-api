@@ -93,10 +93,17 @@ class User(BaseUser):
             access_token = create_access_token(identity=user_username_registered)
             return {
                 'pesan':'Singin success!',
-                'token':access_token
+                'access_token':access_token
                 }
 
 
+    # metode get untuk sign in dan mendapatkan token
+
+    # untuk memproteksi bagian menggunakan token kita bisa ngasih @jwt_required
+    # artinya nggak semua orang boleh mengakses bagian ini, tapi hanya yang mengirim token
+    @jwt_required
+    def get(self):
+        return {'pesan':"Ini bagian yang terproteksi"}
 
 users_api    = Blueprint('resources.users', __name__)
 api          = Api(users_api)

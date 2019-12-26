@@ -1,7 +1,7 @@
 import datetime
 from peewee import *
 
-sqliteDatatabase = SqliteDatabase('NEWDB.db')
+sqliteDatatabase = SqliteDatabase('new_datatabase.db')
 
 class BaseModel(Model):
     class Meta:
@@ -9,8 +9,6 @@ class BaseModel(Model):
 
 class User(BaseModel):
     username    = CharField(unique=True, max_length=25)
-    first_name  = CharField(max_length=30)
-    last_name   = CharField(max_length=30)
     password    = CharField()
 
 class Blog(BaseModel):

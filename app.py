@@ -5,6 +5,10 @@ from flask_restful import Resource
 from resources.blog import blog_api
 from resources.users import users_api
 
+# import JWT
+from flask_jwt_extended import (JWTManager, jwt_required, create_access_token, get_jwt_identity)
+
+
 import models
 
 app = Flask(__name__)
